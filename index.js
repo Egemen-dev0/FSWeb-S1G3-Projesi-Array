@@ -40,10 +40,9 @@ Aşağıdakileri yapmak için aşağıdaki kopyalama işlevini kullanın:
 */
 
 
-function kopyala(/*kod buraya*/){
-  /*kod buraya*/
+function kopyala(toBeCopied) {
+  return toBeCopied.slice()
 }
-
 
 /* Görev 2:
 Bir dizinin tam olarak 25 çeşit olduğunu onaylayın. İşleviniz şunları kabul etmelidir:
@@ -56,10 +55,14 @@ Bir dizinin tam olarak 25 çeşit olduğunu onaylayın. İşleviniz şunları ka
 */
 
 
-function dizi25Cesitmi(/*kod buraya*/){
-  /*kod buraya*/
+function dizi25Cesitmi(toBeChecked) {
+  if (toBeChecked.length === 25) {
+    return true
+  } else {
+    return false
+  }
 }
-
+dizi25Cesitmi(orijinalTatlar);
 
 /* Görev 3:
 Pastane sahibi size yeni bir lezzet fikriyle geldi: Kakule! Bunun da çok tutacağından çok emin. Bu lezzeti eklemek için diziyi değiştirmeniz gerekir.
@@ -74,10 +77,11 @@ Aşağıdakileri yapmak için cesitEkle işlevini kullanın:
 */
 
 
-function cesitEkle(/*kod buraya*/){
-  /*kod buraya*/
+function cesitEkle(receivingArr, toBeAdded) {
+  receivingArr.unshift(toBeAdded);
+  return receivingArr;
 }
-
+cesitEkle(orijinalTatlar, "Kakule");
 
 /* Cörev 4:
 
@@ -92,10 +96,11 @@ Aşağıdakileri yapmak için sonCesitiKaldir işlevini kullanın:
 */
 
 
-function sonCesitiKaldir(/*kod buraya*/){
-  /*kod buraya*/
+function sonCesitiKaldir(toBeOmitted) {
+  toBeOmitted.pop()
+  return toBeOmitted
 }
-
+console.log(sonCesitiKaldir(orijinalTatlar));
 
 /* Görev 5:
 Dizideki belirli bir indeksteki çeşniyi döndüren bir işlev yazın.
@@ -108,10 +113,10 @@ Aşağıdakileri yapmak için aşağıdaki indekstekiCesitiGetir işlevini kulla
    Örneğin: indekstekiCesitiGetir(orijinalTatlar, 2) çalıştırılmasıyla, Kakule'in başarıyla eklendiği varsayarsak sonuç "Ceviz" olucaktır.
 */
 
-function indekstekiCesitiGetir(/*kod buraya*/){
-  /*kod buraya*/
+function indekstekiCesitiGetir(selectFrom, indxNmb) {
+  return selectFrom.at(indxNmb);
 }
-
+indekstekiCesitiGetir(orijinalTatlar, 2);
 
 /* Görev 6:
 
@@ -128,10 +133,11 @@ Aşağıdakileri yapmak için ismeGoreCesitCikar işlevini kullanın:
   İPUCU: Bunun için .splice() kullanabilirsiniz.
 */
 
-function ismeGoreCesitCikar(/*kod buraya*/){
-  /*kod buraya*/
+function ismeGoreCesitCikar(extractedFrom, flavor) {
+  extractedFrom.splice(extractedFrom.indexOf(flavor), 1)
+  return extractedFrom
 }
-
+ismeGoreCesitCikar(orijinalTatlar, "Limon");
 
 /* Görev 7:
 
@@ -154,10 +160,16 @@ Aşağıdakileri yapmak için ismeGoreFiltrele işlevini kullanın:
 */
 
 
-function ismeGoreFiltrele(/*kod buraya*/){
-  /*kod buraya*/
+function ismeGoreFiltrele(flavors, filterım) {
+  let newArray = [];
+  for (let i = 0; i < flavors.length; i++) {
+    if (flavors[i].includes(filterım)) {
+      newArray.push(flavors[i]);
+    }
+  }
+  return newArray
 }
-
+ismeGoreFiltrele(orijinalTatlar, "Çikolata");
 
 
 /* ALIŞTIRMA */
@@ -172,9 +184,24 @@ Aşağıdakileri yapmak için ortalamaKelimeSayisi işlevini kullanın:
    Örneğin: ortalamaKelimeSayisi(orijinalTatlar) 0 ile 2 arasında bir sayı döndürmelidir.
 */
 
-function ortalamaKelimeSayisi(/*kod buraya*/){
-  /*kod buraya*/
+function ortalamaKelimeSayisi(arrToBeCalculated) {
+  const toplamKelimeSayisi = arrToBeCalculated.reduce((toplam, deger) => {
+    let eachWord = deger.split(" ")
+    return toplam + eachWord.length
+  }, 0);
+  return toplamKelimeSayisi / arrToBeCalculated.length
 }
+/*
+ARKADAŞIMIN ETÜTDE YAPTIĞI FONKSYON ==> Ben .reduce methoduyla yaptım
+
+function ortalamaKelimeSayisi(arrToBeCounted){
+   let toplamKelime = 0;
+   for (let i = 0; i<arrToBeCounted.length; i++) {
+    toplamKelime += arrToBeCounted[i].split(" ").length
+   }
+return toplamKelime/arrToBeCounted.length;
+}
+*/
 
 
 /* ALIŞTIRMA 2:
@@ -190,10 +217,53 @@ Aşağıdakileri yapmak için rastgeleTatlar işlevini ve yeni dizileri kullanı
 */
 
 
-function rastgeleTatlar(/*kod buraya*/){
-  /*kod buraya*/
+function rastgeleTatlar(array1, array2, array3, array4) {
+  const combinedArrays = array1.concat(array2, array3, array4)
+  let randomlyCreatedArr = [];
+  for (let indxnb = 0; indxnb < 25; indxnb++) {
+    let randomIndx = Math.floor(Math.random() * combinedArrays.length)
+    let randomlyCreatedvalue = combinedArrays[randomIndx];
+    randomlyCreatedArr.push(randomlyCreatedvalue);
+  }
+  return randomlyCreatedArr;
 }
 
+const yeniTatlar = [
+  "Badem",
+  "Ballı Badem",
+  "Fıstık Ezmesi",
+  "Profiterol",
+  "Madlen Çikolata"
+]
+
+const mevsimlikTatlar = [
+  "Pekan",
+  "Kaju",
+  "Çikolatalı Mousse",
+  "Fransız Vanilyası",
+  "Yumurta",
+  "Alman çikolatası",
+  "Kek üzerine krema",
+  "Hindistan Cevizi",
+  "Kaymaklı Biskuvi",
+  "Beyaz Çikolata",
+  "Mango"
+]
+
+const bolgeselTatlar = [
+  "Kaymak",
+  "Karpuz",
+  "Karadut",
+  "Turunç",
+  "Portakal",
+  "Yogurt",
+  "Krem Peynir",
+  "Kakao",
+  "Karamel macchiato",
+  "Kuru üzüm",
+  "Peynir",
+  "Karamel"
+]
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
 // const yeniTatlar = [
 //   "Badem",
@@ -234,7 +304,7 @@ function rastgeleTatlar(/*kod buraya*/){
 
 
 /* Lütfen bu satırın altındaki hiçbir şeyi değiştirmeyin */
-function sa(){
+function sa() {
   console.log('Calışıyor');
   return 'as';
 }
