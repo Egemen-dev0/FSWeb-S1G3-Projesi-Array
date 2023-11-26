@@ -220,7 +220,7 @@ Aşağıdakileri yapmak için rastgeleTatlar işlevini ve yeni dizileri kullanı
 function rastgeleTatlar(array1, array2, array3, array4) {
   const combinedArrays = array1.concat(array2, array3, array4)
   let randomlyCreatedArr = [];
-  for (let indxnb = 0; indxnb < 25; indxnb++) {
+  for (let loopTime = 0; loopTime < 25; loopTime++) {
     let randomIndx = Math.floor(Math.random() * combinedArrays.length)
     let randomlyCreatedvalue = combinedArrays[randomIndx];
     randomlyCreatedArr.push(randomlyCreatedvalue);
@@ -263,7 +263,9 @@ const bolgeselTatlar = [
   "Kuru üzüm",
   "Peynir",
   "Karamel"
-]
+];
+rastgeleTatlar(orijinalTatlar, bolgeselTatlar, mevsimlikTatlar, yeniTatlar);
+
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
 // const yeniTatlar = [
 //   "Badem",
